@@ -17,22 +17,18 @@ const StudentSchema = new mongoose.Schema(
         upsert:true 
     },
     email:{
-       from:{ type:String,
-        required: true,
-        unique: true,
-       },
-       to:{
+      
         type:String,
         required: true,
-        unique: true,
-       },
-       body:{
-        type:String,
-        required: true,
-        unique: true,
-       }
+        unique: true   
 
+    },
+    dateofbirth:{
+      type:Date,
+      required: true,
+      unique: true 
     }
+
   },
 
 );
