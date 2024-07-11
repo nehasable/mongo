@@ -53,12 +53,43 @@ export const customStudent=async(req,res)=>{
         console.log(error) 
     }
 }
+
 export const deleteStudent=async(req,res)=>{
     try{
         const {id}=req.params
-        const student=await Student.findById(id)
-        res.status(200).json(student)
+        const studentDelete=await Student.findByIdAndDelete(id)
+        res.status(200).json(studentDelete)
     }catch(error){
        console.log(error) 
     }
 }
+// export const updateStudent= async (req, res) => {
+//     try {
+//       const updatedStudent = await Student.findByIdAndUpdate(
+//         req.params.id,                                                
+//         { $set: req.body },                
+//         { new: true }                                                //display change as new schema
+//       );
+//       res.status(200).json(updatedStudent);
+//     } catch (error) {
+//         console.log(error) 
+//     }
+//   };
+export const updateStudent= async (req, res) => {
+    try {
+       const allStudents=await Student.find() 
+       const bulk=
+       allStudents.map((student)=>({
+        updateOne:{
+            filter:{_id: student._id},
+            update:{ $set: req.body }
+        }
+       }))
+      const updatedStudent = await Student.bulkWrite(bulk);
+      res.status(200).json(updatedStudent);
+    } catch (error) {
+        console.log(error) 
+    }
+  };
+
+

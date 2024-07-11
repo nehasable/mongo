@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 import express from "express"
 import dotenv from "dotenv"
 import StudentRoute from "./routes/StudentRoute.js"
-
+import AddressRoute from "./routes/AddressRoute.js"
 const app=express()
 app.use(express.json());
 dotenv.config()
 app.use('/api', StudentRoute)
+app.use('/api', AddressRoute)
 console.log("get")
 
 // app.get("/", (req, res) => {

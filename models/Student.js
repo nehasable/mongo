@@ -4,18 +4,13 @@ const StudentSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
+      
     },
     mobileno:{
       type: Number,
       required: true,
     },
-    address:{
-        type: String,
-        required: true,
-        unique: true,
-        upsert:true 
-    },
+ 
     email:{
       
         type:String,
@@ -26,11 +21,20 @@ const StudentSchema = new mongoose.Schema(
     dateofbirth:{
       type:Date,
       required: true,
-      unique: true 
-    }
-
-  },
+       
+    },
+    pincode:{
+      type:String,
+        required: true,
+    },
+    address: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Address',
+      required: true,
+    },
+  }
 
 );
 
 export default mongoose.model("Student",StudentSchema);
+
